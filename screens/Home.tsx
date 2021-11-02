@@ -15,12 +15,22 @@ export default function Home() {
     setTask("");
   };
 
+  const completeTask = (index: number) => {
+    let itemsCopy = [...taskItems];
+    itemsCopy.splice(index, 1);
+
+    setTaskItems(itemsCopy);
+  };
   return (
     <View style={tw`flex-1`}>
       <Text style={tw`font-bold text-2xl pt-16`}>Today's Tasks</Text>
       <View style={tw`mt-5`}>
         {taskItems.length ? (
-          taskItems.map((item, index) => <Task text={item} key={index} />)
+          taskItems.map((item, index) => (
+            <Pressable key={index} onPress={() => completeTask(index)}>
+              <Task text={item} />
+            </Pressable>
+          ))
         ) : (
           <View style={tw`bg-red-50 w-auto p-4 rounded`}>
             <Text>No tasks are available!</Text>
