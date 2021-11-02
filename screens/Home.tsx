@@ -1,6 +1,15 @@
 import * as React from "react";
 import tw from "twrnc";
-import { View, Text, TextInput, Pressable, Keyboard } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  Pressable,
+  Keyboard,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
 
 import Task from "../components/Task";
 
@@ -24,7 +33,7 @@ export default function Home() {
   return (
     <View style={tw`flex-1`}>
       <Text style={tw`font-bold text-2xl pt-16`}>Today's Tasks</Text>
-      <View style={tw`mt-5`}>
+      <ScrollView showsVerticalScrollIndicator={false} style={tw`mt-5`}>
         {taskItems.length ? (
           taskItems.map((item, index) => (
             <Pressable key={index} onPress={() => completeTask(index)}>
@@ -36,10 +45,11 @@ export default function Home() {
             <Text>No tasks are available!</Text>
           </View>
         )}
-      </View>
+      </ScrollView>
 
-      <View
-        style={tw`absolute bottom-0 inset-x-0 flex-row justify-center items-center`}
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={tw`absolute bottom-6 inset-x-0 flex-row justify-center items-center`}
       >
         <TextInput
           style={tw`bg-white w-3/4 h-12 rounded-full px-4`}
@@ -52,7 +62,7 @@ export default function Home() {
             <Text style={tw`text-center text-3xl m-auto`}>+</Text>
           </View>
         </Pressable>
-      </View>
+      </KeyboardAvoidingView>
     </View>
   );
 }
