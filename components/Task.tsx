@@ -1,10 +1,10 @@
-import * as React from "react";
-import { View, Text } from "react-native";
-import tw from "twrnc";
+import * as React from 'react'
+import { View, Text } from 'react-native'
+import tw from 'twrnc'
 
 type TaskProps = {
-  text: string;
-};
+  text: string
+}
 
 export default function Task(props: TaskProps) {
   return (
@@ -17,5 +17,5 @@ export default function Task(props: TaskProps) {
       </View>
       <View style={tw`border border-blue-700 w-4 h-4 rounded-full`} />
     </View>
-  );
+  )
 }

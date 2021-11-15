@@ -1,5 +1,5 @@
-import * as React from "react";
-import tw from "twrnc";
+import * as React from 'react'
+import tw from 'twrnc'
 import {
   View,
   Text,
@@ -8,28 +8,28 @@ import {
   Keyboard,
   ScrollView,
   KeyboardAvoidingView,
-  Platform,
-} from "react-native";
+  Platform
+} from 'react-native'
 
-import Task from "../components/Task";
+import Task from '../components/Task'
 
 export default function Home() {
-  const [task, setTask] = React.useState<string>("");
-  const [taskItems, setTaskItems] = React.useState<string[]>([]);
+  const [task, setTask] = React.useState<string>('')
+  const [taskItems, setTaskItems] = React.useState<string[]>([])
 
   const handleAddTask = () => {
-    Keyboard.dismiss(); // disappering physical keyboard when added new task
+    Keyboard.dismiss() // disappering physical keyboard when added new task
 
-    setTaskItems([...taskItems, task]);
-    setTask("");
-  };
+    setTaskItems([...taskItems, task])
+    setTask('')
+  }
 
   const completeTask = (index: number) => {
-    let itemsCopy = [...taskItems];
-    itemsCopy.splice(index, 1);
+    let itemsCopy = [...taskItems]
+    itemsCopy.splice(index, 1)
 
-    setTaskItems(itemsCopy);
-  };
+    setTaskItems(itemsCopy)
+  }
   return (
     <View style={tw`flex-1`}>
       <Text style={tw`font-bold text-2xl pt-16`}>Today's Tasks</Text>
@@ -53,13 +53,13 @@ export default function Home() {
         </ScrollView>
 
         <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           style={tw`bg-[#E8EAED] flex-row justify-center items-center pb-3`}
         >
           <TextInput
             style={tw`bg-white w-3/4 h-12 rounded-full px-4`}
             placeholder="Write a task"
-            onChangeText={(text) => setTask(text)}
+            onChangeText={text => setTask(text)}
             value={task}
           />
           <Pressable onPress={() => handleAddTask()}>
@@ -70,5 +70,5 @@ export default function Home() {
         </KeyboardAvoidingView>
       </View>
     </View>
-  );
+  )
 }
